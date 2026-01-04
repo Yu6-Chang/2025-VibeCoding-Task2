@@ -94,9 +94,12 @@
             border-radius: 4px;
             font-weight: bold;
             margin-top: 1rem;
+            text-align: center;
+            border: 1px solid var(--accent); /* 保持邊框一致性 */
         }
         .btn:hover {
             background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         /* 導覽列樣式 */
@@ -180,19 +183,85 @@
         .section-about {
             background-color: var(--bg-body);
         }
-        .about-content {
-            background-color: var(--bg-card);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
+
+        /* About Grid Layout */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 手機預設單欄 */
+            gap: 2rem;
+            align-items: center;
         }
-        .placeholder-text {
+
+        /* About Text Area */
+        .about-text p {
+            margin-bottom: 1.5rem;
             color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-left: 4px solid var(--accent);
-            font-family: monospace;
+        }
+
+        /* Strong Points List */
+        .about-list {
+            margin: 1.5rem 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .about-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        .about-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Buttons Container */
+        .about-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Secondary Button (Outline) */
+        .btn-outline {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
             margin-top: 1rem;
+            text-align: center;
+            border: 1px solid var(--accent);
+        }
+        .btn-outline:hover {
+            background-color: rgba(56, 189, 248, 0.1); /* 淡淡的青色背景 */
+            text-decoration: none;
+        }
+
+        /* About Image */
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* RWD Specific for About (Tablet+) */
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr; /* 左右各半 */
+                gap: 4rem;
+            }
+            .section-about .section-title {
+                text-align: left; /* 大螢幕時標題靠左 */
+            }
+            /* 調整順序：雖然 HTML 結構是文字在前，但 Flex/Grid 也可以控制 */
+            /* 這裡保持預設：左文、右圖 */
         }
         /* CSS:ABOUT-END */
 
@@ -294,12 +363,34 @@
             <section id="about" class="section section-about" aria-labelledby="about-heading">
                 <div class="container">
                     <h2 id="about-heading" class="section-title">關於我</h2>
-                    <div class="about-content">
-                        <p>這是一個熱愛新技術、注重細節的前端工程師簡介占位區。</p>
-                        <p>我致力於編寫整潔的程式碼，並透過持續學習來解決複雜的問題。</p>
-                        
-                        <div class="placeholder-text">
-                            之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
+                    
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <p>
+                                你好，我是 Alex，目前擔任前端工程師，同時也熱衷於技術教學。
+                                我專注於現代前端技術棧（React / Vue），擅長將複雜的業務邏輯轉化為直觀流暢的使用者介面。
+                            </p>
+                            <p>
+                                我不只關注程式碼的品質，更重視團隊溝通與知識傳遞。我相信優秀的開發者除了技術能力，
+                                更需要具備將問題「講清楚」的能力，讓專案開發過程更加透明、順暢。
+                            </p>
+                            
+                            <ul class="about-list">
+                                <li>RWD 響應式網頁設計與切版</li>
+                                <li>前端架構規劃與效能優化</li>
+                                <li>技術文件撰寫與跨部門溝通</li>
+                            </ul>
+
+                            <div class="about-actions">
+                                <a href="#projects" class="btn">查看作品集</a>
+                                <a href="#contact" class="btn-outline">聯絡我</a>
+                            </div>
+                        </div>
+
+                        <div class="about-image">
+                            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80" 
+                                 alt="正在專注撰寫程式碼的前端工程師" 
+                                 loading="lazy">
                         </div>
                     </div>
                 </div>
